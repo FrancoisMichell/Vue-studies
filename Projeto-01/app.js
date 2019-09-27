@@ -7,7 +7,8 @@ new Vue({
     monstro: 100,
     mensagem: '',
     statusJogador:'green',
-    statusMonstro:'green'
+    statusMonstro:'green',
+    logs: []
   },
   watch: {
     jogador(){
@@ -37,6 +38,7 @@ new Vue({
   },
   methods: {
     iniciar() {
+      this.logs = []
       this.fimDeJogo = false
       this.jogador = 100
       this.monstro = 100
@@ -47,18 +49,24 @@ new Vue({
       const hit_usuario = parseInt(Math.random() * 10) + 1
       this.jogador -= hit_monstro
       this.monstro -= hit_usuario
+      this.logs.unshift({bateu:'jogador', hit: hit_usuario})
+      this.logs.unshift({bateu:'monstro', hit: hit_monstro})
     },
     ataqueEspecial() {
       const hit_monstro = parseInt(Math.random() * 10) + 2
       const hit_usuario = parseInt(Math.random() * 10) + 3
       this.jogador -= hit_monstro
       this.monstro -= hit_usuario
+      this.logs.unshift({bateu:'jogador', hit: hit_usuario})
+      this.logs.unshift({bateu:'monstro', hit: hit_monstro})
     },
     curar() {
       const hit_monstro = parseInt(Math.random() * 10) + 2
       const cura_usuario = parseInt(Math.random() * 10) + 2
       this.jogador -= hit_monstro
       this.jogador += cura_usuario
+      this.logs.unshift({bateu:'cura', hit: cura_usuario})
+      this.logs.unshift({bateu:'monstro', hit: hit_monstro})
     },
     desistir() {
       this.iniciado = false

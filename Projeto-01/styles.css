@@ -1,3 +1,12 @@
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+ul {
+  list-style: none;
+}
+
 .column {
   float: left;
   width: 50%
@@ -26,7 +35,8 @@
 }
 
 .iniciar {
-  background-color: plum;
+  background-color: #4253af;
+  color: #fff;
 }
 
 .progresso {
@@ -35,17 +45,55 @@
 }
 
 .ataque {
-  background-color: red
+  background-color: #e51c23;
+  color: #fff;
 }
 
 .especial {
-  background-color: yellowgreen
+  background-color: #ff9800;
+  color: #000;
 }
 
 .curar {
-  background-color: aqua
+  background-color: #259b24;
+  color: #FFF;
 }
 
 .desistir {
-  background-color: gray
+  background-color: #BBB;
+  color: #000;
+}
+
+.logArea {
+  padding: 10px;
+  text-align: center;
+}
+
+.logArea ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logs ul li {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0px;
+  padding: 3px 0px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
+.usuario {
+  background-color: #4253afaa;
+    color: #fff;
+}
+
+.monstro {
+  background-color: #e51c23aa;
+    color: #fff;
 }

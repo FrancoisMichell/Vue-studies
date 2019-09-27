@@ -31,7 +31,13 @@
   </div>
   <hr>
   <div class="logArea">
-    
+    <ul>
+      <li v-for="log in logs">
+        <p class="usuario" v-if="log.bateu === 'jogador'">JOGADOR ATINGIU MONSTRO COM {{log.hit}}</p>  
+        <p class="usuario" v-else-if="log.bateu === 'cura'">JOGADOR GANHOU FORÇA DE {{log.hit}}</p>  
+        <p class="monstro" v-else>MONSTRO ATINGIU JOGADOR COM {{log.hit}}</p>  
+        </li>
+    </ul>
   </div>
 </div>
 
