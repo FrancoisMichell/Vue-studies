@@ -1,0 +1,39 @@
+<script src="https://unpkg.com/vue"></script>
+<link rel="stylesheet" href="styles.css">
+
+<div id="projeto">
+  <div class="row">
+    <div class="column">
+      <p class="texto">Jogador</p>
+      <div class="barraProgresso">
+        <div class="progresso" :style="{backgroundColor:statusJogador, width:jogador+'%'}"></div>
+      </div>
+      <p class="texto">{{jogador}}%</p>
+    </div>
+    <div class="column">
+      <p class="texto">Monstro</p>
+      <div class="barraProgresso">
+        <div class="progresso" :style="{backgroundColor:statusMonstro, width:monstro+'%'}"></div>
+      </div>
+      <p class="texto">{{monstro}}%</p>
+    </div>
+  </div>
+  <hr>
+  <div class="btnArea">
+    <p v-if="fimDeJogo">{{mensagem}}</p>
+    <button v-if="!iniciado || fimDeJogo" class="iniciar" @click="iniciar">INICIAR NOVO JOGO</button>
+    <template v-else>
+      <button class="ataque"   @click="atacar">ATAQUE</button>
+      <button class="especial" @click="ataqueEspecial">ATAQUE ESPECIAL</button>
+      <button class="curar"    @click="curar">CURAR</button>
+      <button class="desistir" @click="desistir">DESISTIR</button>
+    </template>
+  </div>
+  <hr>
+  <div class="logArea">
+    
+  </div>
+</div>
+
+
+<script src="app.js"></script>

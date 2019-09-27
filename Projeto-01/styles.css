@@ -1,0 +1,51 @@
+.column {
+  float: left;
+  width: 50%
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.barraProgresso {
+	height: 30px;
+	width: 500px;
+  border: 1px solid black;
+  margin-left: 80px
+}
+
+.texto {
+  text-align: center
+}
+
+.btnArea {
+  padding: 10px;
+  text-align: center;
+}
+
+.iniciar {
+  background-color: plum;
+}
+
+.progresso {
+	background-color: green;
+	height: 100%
+}
+
+.ataque {
+  background-color: red
+}
+
+.especial {
+  background-color: yellowgreen
+}
+
+.curar {
+  background-color: aqua
+}
+
+.desistir {
+  background-color: gray
+}
