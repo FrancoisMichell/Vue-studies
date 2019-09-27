@@ -26,11 +26,11 @@
       <button class="ataque"   @click="atacar">ATAQUE</button>
       <button class="especial" @click="ataqueEspecial">ATAQUE ESPECIAL</button>
       <button class="curar"    @click="curar">CURAR</button>
-      <button class="desistir" @click="desistir">DESISTIR</button>
+      <button class="desistir" @click="resetar">DESISTIR</button>
     </template>
   </div>
   <hr>
-  <div class="logArea">
+  <div v-if="logs.length > 0" class="logArea">
     <ul>
       <li v-for="log in logs">
         <p class="usuario" v-if="log.bateu === 'jogador'">JOGADOR ATINGIU MONSTRO COM {{log.hit}}</p>  

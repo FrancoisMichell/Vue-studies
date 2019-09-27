@@ -6,12 +6,12 @@ new Vue({
     jogador: 100,
     monstro: 100,
     mensagem: '',
-    statusJogador:'green',
-    statusMonstro:'green',
+    statusJogador: 'green',
+    statusMonstro: 'green',
     logs: []
   },
   watch: {
-    jogador(){
+    jogador() {
       if (this.jogador <= 0) {
         this.jogador = 0
         this.iniciado = false
@@ -23,7 +23,7 @@ new Vue({
         this.statusJogador = 'green'
       }
     },
-    monstro(){
+    monstro() {
       if (this.monstro <= 0) {
         this.monstro = 0
         this.iniciado = false
@@ -38,40 +38,46 @@ new Vue({
   },
   methods: {
     iniciar() {
-      this.logs = []
       this.fimDeJogo = false
-      this.jogador = 100
-      this.monstro = 100
+      this.resetar()
       this.iniciado = true
     },
     atacar() {
-      const hit_monstro = parseInt(Math.random() * 10) + 2
-      const hit_usuario = parseInt(Math.random() * 10) + 1
-      this.jogador -= hit_monstro
-      this.monstro -= hit_usuario
-      this.logs.unshift({bateu:'jogador', hit: hit_usuario})
-      this.logs.unshift({bateu:'monstro', hit: hit_monstro})
+      const { usuario, monstro } = this.ataque()
+      this.atualizaVida(usuario, monstro, false)
+      this.geraLog('jogador', usuario, monstro)
     },
     ataqueEspecial() {
-      const hit_monstro = parseInt(Math.random() * 10) + 2
-      const hit_usuario = parseInt(Math.random() * 10) + 3
-      this.jogador -= hit_monstro
-      this.monstro -= hit_usuario
-      this.logs.unshift({bateu:'jogador', hit: hit_usuario})
-      this.logs.unshift({bateu:'monstro', hit: hit_monstro})
+      const { usuario, monstro } = this.ataque()
+      this.atualizaVida(usuario + 1, monstro, false)
+      this.geraLog('jogador', usuario + 1, monstro)
     },
     curar() {
-      const hit_monstro = parseInt(Math.random() * 10) + 2
-      const cura_usuario = parseInt(Math.random() * 10) + 2
-      this.jogador -= hit_monstro
-      this.jogador += cura_usuario
-      this.logs.unshift({bateu:'cura', hit: cura_usuario})
-      this.logs.unshift({bateu:'monstro', hit: hit_monstro})
+      const { usuario, monstro } = this.ataque()
+      this.atualizaVida(usuario + 1, monstro, true)
+      this.geraLog('cura', usuario + 1, monstro)
     },
-    desistir() {
+    resetar() {
+      this.logs = []
       this.iniciado = false
       this.jogador = 100
       this.monstro = 100
+    },
+    ataque() {
+      const monstro = parseInt(Math.random() * 10) + 2
+      const usuario = parseInt(Math.random() * 10) + 1
+      return { usuario, monstro }
+    },
+    atualizaVida(usuario, monstro, cura) {
+      this.jogador -= monstro
+      if (cura) this.jogador + usuario > 100
+        ? this.jogador = 100
+        : this.jogador += usuario
+      else this.monstro -= usuario
+    },
+    geraLog(acao, usuario, monstro) {
+      this.logs.unshift({ bateu: acao, hit: usuario })
+      this.logs.unshift({ bateu: 'monstro', hit: monstro })
     }
   }
 })
